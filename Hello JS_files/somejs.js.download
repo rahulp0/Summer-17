@@ -1,0 +1,21 @@
+console.log("hey");
+
+function CnstrctApp(color,width,height){
+    console.log(this);
+
+
+    this.color=color;
+    this.width=width;
+    this.height=height;
+    console.log(" "+this);
+
+}
+
+CnstrctApp.prototype={
+    eat:function(){return 'eat that';},
+    throw:function(){return 'Throw it;'},
+    nibble:function(){return 'nibble like a ham';}
+}
+var app=new CnstrctApp("yellow",400,98);
+var app2=new CnstrctApp("red",90,88); 
+
