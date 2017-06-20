@@ -1,61 +1,34 @@
 //Largest palindrome obtained by multiplying two three digit numbers
 
-{
-var i;
-var palindrome;
-var maxint=999*999;
-var arrLR=[];
-var arrRL=[];
 
+function largestPalindrome() {
 
-/*var y=0;
-for(var i=999;i>970;i--)
-{
-	for(var j=999;j>900;j--){
-		maxint=i*j;
-		//let u=isPal(maxint);
-		if(isPal(maxint))
-			{
-				document.writeln(maxint);
-				console.log(maxint);
-				break;
-				
-			}
+    var max = 0;
 
-		else 
-			continue;
-		
-
+    
+    for (var i = 999; i > 100; i--) {
+       
+        for (var j = i; j > 100; j--) {
+            var mul = j * i;
+            if (isPalin(mul) && mul > max) {
+                max = i * j;
+            }
+        }
     }
-}*/
 
-let u=isPal(119);
-document.writeln(u);
+    return max;
+
 }
 
+function isPalin(i) {
 
+   
+    i = '' + i;
 
-function isPal(maxint){
-	var arrLR=[];
-    var arrRL=[];
-    var n=maxint;
-	while(maxint/10!=0)
-	{
-		i=maxint%10;
-		arrRL.push();
-		maxint=maxint/10;
-	}
-	arrLR=arrRL;
-	arrLR.reverse();
-	
+    
+    if(i === i.split("").reverse().join(""))
+    	return 1;
 
-	if(arrLR===arrRL){
-		palindrome=1;
-		console.log("we have it here"+n);
-	}
-	else 
-		palindrome=0;
-
-	return palindrome;
 }
 
+console.log(largestPalindrome());
