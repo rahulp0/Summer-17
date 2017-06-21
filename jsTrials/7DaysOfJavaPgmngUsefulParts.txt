@@ -1,0 +1,221 @@
+d7.2
+function processData(input) {
+    //Enter your code here
+    
+   
+  
+     var i=1,j=9;//j=height-1
+    console.log(Array(j).join(" ")+'*'.repeat(i));
+    for(i,j;j>0;j-=1,i+=2){
+        
+         console.log(Array(j).join(" ")+'0'.repeat(i));
+    }
+}
+
+process.stdin.resume();
+process.stdin.setEncoding("ascii");
+_input = "";
+process.stdin.on("data", function (input) {
+    _input += input;
+});
+
+process.stdin.on("end", function () {
+   processData(_input);
+});
+
+
+
+
+d7.1
+function processData(input) {
+    //Enter your code here
+    
+    
+    console.log(Array(14+1).join(Array(7+1).join("\u2571\u2572")+'\n'));
+} 
+
+process.stdin.resume();
+process.stdin.setEncoding("ascii");
+_input = "";
+process.stdin.on("data", function (input) {
+    _input += input;
+});
+
+process.stdin.on("end", function () {
+   processData(_input);
+});
+
+d6.4
+function processData(input) { 
+    var arrLines = input.split('\n');
+    var n=Number(arrLines[0]);//FirstVal T
+    
+    for(var i=1;i<=n;++i){
+        var diff=0,start=0,end=arrLines[i].length -1;
+        
+        do{
+            var frst=arrLines[i].charCodeAt(start);
+            var nd=arrLines[i].charCodeAt(end);
+            if(frst!=nd)
+                diff+=Math.abs(frst-nd);
+            
+             
+            start=start+1;
+            end=end-1;
+            
+        }
+        while(start<=end);
+        console.log(diff);
+    }
+    
+    
+}
+ 
+
+process.stdin.resume();
+process.stdin.setEncoding("ascii");
+_input = "";
+process.stdin.on("data", function (input) {
+    _input += input;
+});
+
+process.stdin.on("end", function () {
+   processData(_input);
+});
+
+d6.3
+
+function fill(arr, i, j, m, n) {
+    if (i < 0 || i >= m || j < 0 || j >= n) 
+        return 0;
+    else if (arr[i][j] == 1) { 
+        arr[i][j] = 0;
+        
+        return 1+fill(arr, i-1, j-1, m, n)
+                +fill(arr, i-1, j, m, n)
+                +fill(arr, i-1, j+1, m, n)
+                +fill(arr, i, j-1, m, n)
+                +fill(arr, i, j+1, m, n)
+                +fill(arr, i+1, j-1, m, n)
+                +fill(arr, i+1, j, m, n)
+                +fill(arr, i+1, j+1, m, n);
+    }
+    return 0;
+}
+function processData(input) {
+    var arr = input.split(/\r?\n/);
+    var m = arr[0], n = arr[1], chck = 0, rslt = 0;
+    arr = arr.slice(2).map(e => e.split(' ').map(Number));
+    
+    for (var i = 0; i < m; i++) {
+        for (var j = 0; j < n; j++) {
+            chck = fill(arr, i, j, m, n);
+            rslt = (chck > rslt) ? chck : rslt;
+        }
+    }
+    console.log(rslt);
+} 
+
+process.stdin.resume();
+process.stdin.setEncoding("ascii");
+_input = "";
+process.stdin.on("data", function (input) {
+    _input += input;
+});
+
+process.stdin.on("end", function () {
+   processData(_input);
+});
+/*
+function keepCount(arr,i,j,count)
+{
+    if(arr[i][j]===1 && (arr[i][j]===arr[i+1][j] || arr[i][j]===arr[i+1][j] || arr[i][j]===arr[i-1][j] || arr[i][j]===arr[i][j+1]|| arr[i][j]===arr[i][j-1] || arr[i][j]===arr[i+1][j+1] || arr[i][j]===arr[i-1][j-1] || arr[i][j]===arr[i+1][j-1] || arr[i][j]===arr[i-1][j+1] ))
+      return 1;
+    else 
+        return 0;
+}*/
+
+d6.2
+process.stdin.resume();
+process.stdin.setEncoding('ascii');
+
+var input_stdin = "";
+var input_stdin_array = "";
+var input_currentline = 0;
+
+process.stdin.on('data', function (data) {
+    input_stdin += data;
+});
+
+process.stdin.on('end', function () {
+    input_stdin_array = input_stdin.split("\n");
+    main();    
+});
+
+function readLine() {
+    return input_stdin_array[input_currentline++];
+}
+
+/////////////// ignore above this line ////////////////////
+
+
+function main() {
+    var t = parseInt(readLine());
+    for(var a0 = 0; a0 < t; a0++){
+        var n = parseInt(readLine());
+        var h = 1;
+        for (var i = 1; i <= n; i++) {
+            if(i % 2 == 0)
+                h=h+1;
+            else
+                h *= 2;
+        }
+        console.log(h);
+    }
+}
+
+d6.1
+function processData(input) {
+    //Enter your code here
+    var rows = input.split('\n');
+    var money = rows[0].split(' ').map(Number)[1];
+    var prices = rows[1].split(' ').map(Number);
+    prices.sort(function(a, b){return a-b});
+    var rest = 0;
+    var numToys = 0;
+
+    for (var i of prices){ 
+        if (money >= rest + i){
+            numToys++;
+        rest += i;            
+    }
+}
+
+console.log(numToys);
+} 
+
+process.stdin.resume();
+process.stdin.setEncoding("ascii");
+_input = "";
+process.stdin.on("data", function (input) {
+    _input += input;
+});
+
+process.stdin.on("end", function () {
+   processData(_input);
+});
+
+d5.3
+//Write your code below this line.
+
+"use strict"
+for(let str of my_array){
+    if(str === str.split('').reverse().join('')){
+        console.log(str);
+    }
+}
+
+
+
+
+
