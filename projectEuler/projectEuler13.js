@@ -1,36 +1,39 @@
 
-function fnd(arr){
-	var p=0;
-	for(var i=1;i<arr;i++){
-		if(arr%i===0)
-			p=p+1;
-		if(p>=500)
-			return 1;
-	     else
-	     	return 0;
-	 }
- 
-}
 
-
-var arr=[];
-for(var i=0;i<15000;i++){
-	var p=i;
-	var sum=0;
-	while(p){
-		sum+=p;
-		--p;
-	}
-	arr.push(sum);
-}
-
-console.log(arr);
-var arr2=[];
-var u=0;
-
-for(var i=0;i<15000;i++){
-	if(fnd(arr[i]))
-		document.writeln(arr[i]+"<br>");
-
-
-}
+ function triNum(n) {
+        var sum = 0;
+        for(var i = 1; i <= n; i++) {
+            sum += i
+        }
+        
+        return sum;
+    }
+    
+    function factors(n) {
+        if ( n == 1 ) return [1];
+        
+        var arr =[];
+        var i = 1;
+        var max = n;
+        
+        while (i < max) {
+            if ( n % i == 0 ) {  
+                arr.push(i);
+                
+                if ( i != n / i ) {  
+                    arr.push(n/i);
+                }
+                max = n / i;
+            }
+            i++
+        }
+        
+        return arr.sort(function(a,b) { return a-b; });
+    }
+    
+    var i = 1;
+    while (factors(triNum(i)).length < 500) {
+        i++
+    }
+    
+    document.writeln(triNum(i));
