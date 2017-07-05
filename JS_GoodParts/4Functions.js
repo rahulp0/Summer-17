@@ -22,7 +22,7 @@ obj.double=function() {
 	helper();
 };
 obj.double();
-document.writeln(obj.value);
+document.writeln(obj.value + "<br>");
 
  
 
@@ -43,7 +43,7 @@ var try_it = function ( ) {
 		 add("seven");
 	 } 
 	 catch (e) {
-	 	document.writeln(e.name + ': ' + e.message);
+	 	document.writeln(e.name + ': ' + e.message+ "<br>");
 	 }
 }
 try_it( );
@@ -69,7 +69,7 @@ document.writeln(-10 / 3);
 String.method('trim', function ( ) {
 	 return this.replace(/^\s+|\s+$/g, '');
 });
-document.writeln('"' + " neat ".trim( ) + '"');
+document.writeln( "<br>"+ '"' + " neat ".trim( ) + '"'+ "<br>");
 
 
 
@@ -82,7 +82,7 @@ Function.prototype.method = function (name, func) {
 var hanoi = function (disc, src, aux, dst) {
  	if (disc > 0) {
  		hanoi(disc - 1, src, dst, aux);
- 		document.writeln('Move disc ' + disc +' from ' + src + ' to ' + dst);
+ 		document.writeln('Move disc ' + disc +' from ' + src + ' to ' + dst+ "<br>");
  		hanoi(disc - 1, aux, src, dst);
  	}
 };

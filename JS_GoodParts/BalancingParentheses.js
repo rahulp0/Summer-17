@@ -1,5 +1,12 @@
 
+function mars(){
+  var ipStr=document.getElementById("myTxt").value;
+}
 
+document.addEventListener("click", function(){document.getElementById("myTxt").value});
+console.log(t);
+
+document.writeln("<br>"+"NOTE: USE ONLY PARENTHESES"+"<br>");
 var check = function( char, ipStr, i ){ 
   for( var g = 0; g < i; g++){
     if(ipStr[g]===char)
@@ -8,66 +15,84 @@ var check = function( char, ipStr, i ){
   return 0;
 }
 
-var bal=0;
-var ipStr ="ab()(";
+var looper = function( init, max, char, arrStr){
+  for( var i = init ; i < max; i++ ){
+    if( arrStr[i] === char )
+      return i;
+  }
+  return 0;
+}
+var imperfStr=[];
+document.writeln("The given expression to be checked for the correctness in the sequence of parentheses is given below:     "+ "<br>");
+var ipStr ="(9+8((())))((";
+var copyOfOriginalArr=[];
+copyOfOriginalArr = ipStr.split("");
+document.writeln(ipStr);
 var strArr =[], arrBrkts=[];
+var newArr = ipStr.split("");
+
 strArr = ipStr.split("");
 var len=strArr.length;
-for( var i=0; i<len ; i++){
-  if( strArr[i] === '['){
-    arrBrkts.push(strArr[i]);
-  }
-  if( strArr[i] === '{'){
-    arrBrkts.push(strArr[i]);
-  }
-  if( strArr[i] === '('){
-    arrBrkts.push(strArr[i]);
-  }
-  if( strArr[i] === ']' && check( '[', strArr, i )){
-    arrBrkts.pop();
-  }
-  if( strArr[i] === '}' && check( '{', strArr, i )){
-    arrBrkts.pop();
-  }
-  if( strArr[i] === ')' && check( '(', strArr, i )){
-    arrBrkts.pop();
-  }
 
+for( var i=0; i<len ; i++){
+  if( strArr[i] === '{' ||strArr[i] === '[' ||strArr[i] === '(' ){
+    arrBrkts.push(strArr[i]);
+  }
+  
+  if( strArr[i] === '}' && check( '{', strArr, i ) || strArr[i] === ']' && check( '[', strArr, i ) || strArr[i] === ')' && check( '(', strArr, i )){
+    arrBrkts.pop();
+  }
 }
 
 if(arrBrkts.length===0){
-  document.writeln("Balanced"+"<br>");
-  bal=1;
+  document.writeln("<br>"+"The given expression is balanced"+"<br>");
   strArr=strArr.join("");
   document.writeln(strArr);
+
 }
-else
-  document.writeln("Needs help"+"<br>");
 
-var index;
-console.log(arrBrkts);
-if(bal==0){
-   
-   var temp=[];
-
-  for( var i=0 ; i<len ; i++ ){
-    for( var j=0 ; j<arrBrkts.length ; j++){
-      if( strArr[i] !== arrBrkts[j] ){
-        temp.push(strArr[i]);
+else{
+  
+  document.writeln("<br>"+ "The given expression isn't balanced"+"<br>");
+  for( var count = 0 ; count < len ; count++ ){
+    if( copyOfOriginalArr[count] === ')'){
+      copyOfOriginalArr[count] = 'closedCheck';
+      for( var t = count-1; t >= 0 ; t-- ){
+          
+        if( strArr[t] === '(' ){
+          copyOfOriginalArr[t] = 'openCheck';
+        }
       }
-      else {
-        
-        if( j > -1 )
-          arrBrkts.splice(j,1);
-      }
-      
     }
   }
-  //temp=temp.splice(0,1);
-  if(temp.length==0){
-    document.writeln("\"\"");
+  
+  while(len){
+    if(copyOfOriginalArr[len-1]==='('|| copyOfOriginalArr[len-1]===')' ){
+      copyOfOriginalArr[len-1]=00;
+    }
+    len--;
   }
-  temp=temp.join("");
-  document.writeln(temp);
-}
 
+  len=copyOfOriginalArr.length;
+  for( var j = 0 ; j <len  ; j++ ){
+    if( copyOfOriginalArr[j] === 'closedCheck'){
+      for(  var i = j-1 ; i >=0 ; i--){
+        if( copyOfOriginalArr[i] === 'openCheck' ) {
+          copyOfOriginalArr[i]='(';
+          copyOfOriginalArr[j]=')';
+          break;
+        }
+      }
+    }
+  } 
+  console.log(copyOfOriginalArr);
+
+
+  for(var i = 0 ; i<len ; i++  ){
+    if(copyOfOriginalArr[i] === 'closedCheck' || copyOfOriginalArr[i] === 'openCheck' ||copyOfOriginalArr[i] === 00 ){
+      copyOfOriginalArr[i]=null;
+    }
+  }
+  copyOfOriginalArr = copyOfOriginalArr.join("");
+  document.writeln(copyOfOriginalArr);
+}
