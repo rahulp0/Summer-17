@@ -4,33 +4,25 @@ var print = function( str ){
 	document.writeln(str+"<br>");
 }
 var ipStr='AGT';
-var copyArr=ipStr.split("");
 var strArr=ipStr.split("");
-var validAbbr=[];
+var validAbbr=[0,1,2,3,4,5,6,7,8,9,""];
 var len = strArr.length;
-
+var firstEl, secEl, thirdEl;
 document.writeln("Finding the number of Valid abbrevations for the given string:"+"<br>");
-document.writeln(ipstr+"<br>");
-document.writeln(ipstr+"<br>");
-for( var i = 0 ; i < len ; i++ ){
-	for( var case = 0 ; case < 10 ; case++ ){
-		copyArr[i]= case;
-		print(copyArr);
-		for( var case2 = 0 ; case2 < 10 ; case3++ ){
-			copyArr[i]=case;
-			var p=i;
-			while(p+2<len){
-			   copyArr[p+2]=case2;
-			   print(copyArr);
+document.writeln(strArr+"<br>");
+//for( var i = 0 ; i < len ; i++ ){
+
+	for( var case1 = 0 ; case1 <= 10 ; case1++ ){
+		firstEl = validAbbr[case1];
+		for( var case2 = 0 ; case2 <= 10 ; case2++ ){
+			secEl = validAbbr[case2];
+			for( var case3 = 0 ; case3 <= 10 ; case3++ ){
+				thirdEl = validAbbr[case3];
+				if( firstEl !== secEl && secEl != thirdEl && (firstEl*secEl != Number && thirdEl*secEl != Number ) ){
+					document.writeln(firstEl+" "+secEl+" "+thirdEl+"<br>");
+				}
 			}
+			
         } 
 	}
-	
-		
-		copyArr[i]= case;
 
-		print(copyArr);
-	
-	copyArr[i]=null;
-
-}
